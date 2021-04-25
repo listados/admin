@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Recino de Chave</title>
+    </head>
+    <body>
+        <style type="text/css">
+            .tg  {border-collapse:collapse;border-spacing:0; max-width: 352px;}
+            .tg td{font-family:Arial, sans-serif;font-size:10px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal; max-width: 352px; }
+            .tg th{font-family:'Calibri,Candara,Segoe,Segoe UI,Optima',Arial, sans-serif;font-size:11px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;  max-width: 352px;; text-align: center;}
+            .tg .tg-yw4l{vertical-align:top;}
+            .tg .tg-yw4l p {text-align: center;}
+            .tg .tg-yw4l p strong{text-align: center;font-family:'Calibri,Candara,Segoe,Segoe UI,Optima',Arial, sans-serif;font-size:12px;}
+        </style>
+        <table class="tg">
+            <tr>
+                @if(isset($_GET['key']) && $_GET['key'] == 'true')
+                <th class="tg-yw4l">
+                    <p>
+                        <strong> ESPÍNDOLA IMOBILIÁRIA LTDA.</strong>
+                    </p>
+                    <p>
+                        CNPJ 09.652.345/0001-02 <br>
+                        Av. Santos Dumont, nº 2828, Loja 12<br>
+                        FORTALEZA – CEARÁ – BRASIL CEP: 60.150-161<br>
+                        Tel. 85 3461.1166 | www.espindolaimobiliária.com.br
+                    </p>
+                </th>
+                @endif
+
+                @if(isset($_GET['auto']) && $_GET['auto'] == 'true')
+                <th class="tg-yw4l">
+                    <p>
+                        <strong> ESPÍNDOLA IMOBILIÁRIA LTDA.</strong>
+                    </p>
+                    <p>
+                        CNPJ 09.652.345/0001-02 <br>
+                        Av. Santos Dumont, nº 2828, Loja 12<br>
+                        FORTALEZA – CEARÁ – BRASIL CEP: 60.150-161<br>
+                        Tel. 85 3461.1166 | www.espindolaimobiliária.com.br
+                    </p>
+                </th>
+                @endif
+
+                
+            </tr>
+            <tr>
+              @if(isset($_GET['key']) && $_GET['key'] == 'true')
+                <td class="tg-yw4l">
+                    <p>
+                        <strong>RECIBO CHAVES PARA VISITAÇÃO</strong>
+                        <br>
+                    <hr>
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>Imóvel: {{$key->keys_type_immobile}} – {{$key->keys_address.','}} {{(!empty($key->keys_number) ? $key->keys_number.',' : null)}} {{(!empty($key->keys_complements ? $key->keys_complements.',' : '' ))}} {{(!empty($key->keys_district) ? $key->keys_district.',' : null )}} {{(!empty($key->keys_city) ? $key->keys_city.',' : null )}} ({{$key->keys_state}}) 
+                        CEP: {{$key->keys_cep}}</strong>  <br>
+                        Caução: R$ {{number_format($key->keys_value_guarantee, 2 , ',' , '.')}}<br>
+                        <strong>Previsão para devolução: {{$key->keys_date_devolution}}</strong>
+                    </p>
+                    <p  style="text-align: left; font-size: 11px;">
+                        Recebi da ESPÍNDOLA IMOBILIÁRIA as chaves do imóvel especificado acima, para visitação do mesmo, comprometendo-me a devolvê-las no prazo acima previsto. Caso ocorra atraso na devolução, perdas ou danos causados na mesma, a caução paga neste ato não será devolvida e ainda terei que indenizar o proprietário por eventual prejuízo causado a este. 
+                    </p>
+                    <p style="text-align: center;">
+                        <br> _________________________________________________________ 
+                        <br>
+                        <label>Assinatura do Visitante</label>
+                    </p>
+                    <p  style="text-align: left;">
+                        Visitante: <strong>{{$key->keys_visitor_name}} </strong><br>
+                        CPF: {{$key->keys_cpf}}<br>
+                        Telefones: {{$key->keys_visitor_phone_one}} / {{$key->keys_visitor_phone_two}}<br>
+                        {{$key->keys_visitor_email}}<br>
+                    </p>
+                    <p>
+                        ------------------------------------------------------------------------------------------------ <br>
+                        Horário Fuc.: Seg a Sex das 8h as 18h <br>
+                        Sabados das 9h as 13h <br>
+                        ------------------------------------------------------------------------------------------------ 
+                    </p>
+                    <p style="text-align: left;">
+                        Emitido em {{date('d/m/Y H:i:s')}}
+                    </p>
+                </td>
+              @endif 
+              
+               @if(isset($_GET['auto']) && $_GET['auto'] == 'true')
+                <td class="tg-yw4l">
+                    <p>
+                        <strong>AUTORIZAÇÃO PARA VISITAÇÃO</strong>
+                        <br>
+                    <hr>
+                    <p style="text-align: left;">
+                        <strong>Imóvel: {{$key->keys_type_immobile}} – {{$key->keys_address.','}} {{(!empty($key->keys_number) ? $key->keys_number.',' : null)}} {{(!empty($key->keys_complements ? $key->keys_complements.',' : '' ))}} {{(!empty($key->keys_district) ? $key->keys_district.',' : null )}} {{(!empty($key->keys_city) ? $key->keys_city.',' : null )}} ({{$key->keys_state}}) 
+                        CEP: {{$key->keys_cep}}</strong>  <br>
+                        Caução: R$ {{number_format($key->keys_value_guarantee, 2 , ',' , '.')}}<br>
+                        <strong>Previsão para devolução: {{$key->keys_date_devolution}}</strong>
+                    </p>
+                    <p  style="text-align: left; font-size: 11px;">
+                        Visitante: <strong>{{$key->keys_visitor_name}} </strong><br>
+                        CPF: {{$key->keys_cpf}}<br>
+                        Telefones: {{$key->keys_visitor_phone_one}} / {{$key->keys_visitor_phone_two}}<br>
+                        {{$key->keys_visitor_email}}<br>
+                    </p>
+                    <p style="text-align: center;">
+                        <label>A Espíndola Imobiliária autoriza o visitante acima a visitar o imóvel acima especificado, o qual encontra-se sob nossa administração. </label>
+                        <br> <br> <br> _________________________________________________________ 
+                        <br>
+                        <label>Assinatura Espíndola Imobiliária</label>
+                    </p>
+                    <p  style="text-align: left;">
+                        <strong>* Atenção * </strong><br> 
+                        - Não liberar visitas após às 19h00.<br> 
+                        - Não liberar a retirada de bens do imóvel sem expressa autorização do proprietário.<br>   
+                        - Em caso de dúvida entrar em contato conosco.
+                    </p>
+                    <p>
+                        ------------------------------------------------------------------------------------------------ <br>
+                        <img src="{{url('public/dist/img/logo_grande.jpg')}}" width="110" height="54" > 
+                    </p>
+                    <p>
+                        Emitido em {{date('d/m/Y H:i:s')}}
+                    </p>
+                </td>
+              @endif 
+
+              
+ 
+            </tr>
+        </table>
+    </body>
+</html>
