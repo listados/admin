@@ -191,6 +191,7 @@ Route::get('reserva/{id}/edit' , 'ReserveController@edit');
 Route::get('reserva/{id}/show' , 'ReserveController@show');
 Route::post('search-reserve' , 'ReserveController@search');
 Route::post('verify-phone-client' , 'KeyController@verifyFone');
+Route::get('criar-reserva/{id}', 'ReserveController@create');
 
 /*  --- ROTA PARA CONFIRMAÇÃO DE RECEBIMENTO DE CHAVES --- */
 //Route::resource('avaliacao' , 'EvaluationController');
@@ -247,6 +248,8 @@ Route::post('files-upload/{id}/tipo/{type}' , 'FileController@upload');
 Route::post('client/verify-email' , 'ClientController@verify_email');
 Route::resource('clientes' , 'ClientController');
 
+//CEP
+Route::post('cep' , 'KeyController@cep');
 /* REDIRECIONAMENTO DE ERROS */
 // Route::get('/pagenotfound', 'HomeController@padenotfound');	
 // Route::get('/denied', 'HomeController@denied');	

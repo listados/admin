@@ -296,6 +296,7 @@ class KeyController extends Controller
                 $id_cliente = null;
             }
             $client = Client::find($id_cliente);
+            dump($client);
             //SE NÃO EXISTIR O CLIENTE, REALIZA O CADASTRO
             if( $client == null)
             {
@@ -306,11 +307,19 @@ class KeyController extends Controller
                 $client_request['clients_id_user']  = Auth::user()->id;
                 $client_request['clients_type']     = "Pessoa Física";
                 $client_request['clients_cpf']      = $request['control_keys_cpf'];
+                $client_request['clients_cep']      = $request['control_keys_clients_cep'];
+                $client_request['clients_address']  = $request['control_keys_clients_address'];
+                $client_request['clients_address_number']      = $request['control_keys_clients_address_number'];
+                $client_request['clients_address_complement']      = $request['control_keys_clients_address_complement'];
+                $client_request['clients_address_complement']      = $request['control_keys_clients_address_complement'];
+                $client_request['clients_district']  = $request['control_keys_clients_district'];
+                $client_request['clients_city']  = $request['control_keys_clients_city'];
+
                 $client_create = Client::create($client_request);
                 $client = Client::find($client_create->clients_id);
 
             }
-
+            dd($request->all());
             //FUNCAO PARA REGISTRAR O FONE DO CLIENTE - CRIANDO ARRAY PARA PASSAR O PARAMETRO NA FUNCAO
             $request_phone      = [];
             $request_phone[0]   = $request['control_keys_visitor_phone_one'];
@@ -369,8 +378,8 @@ class KeyController extends Controller
     {
         if($request->ajax())
         {
-//DB::enableQueryLog();
-////return DB::getQueryLog();
+        //DB::enableQueryLog();
+        ////return DB::getQueryLog();
             //BUSCANDO DADOS
             $phone_client = DB::table('phone')
             ->join('clients', 'phone.phone_id_client', '=', 'clients.clients_id')            
@@ -397,5 +406,23 @@ class KeyController extends Controller
         }
     }
     
+    public function cep(Request $request) {
+        //dump($request['cep']);
+        try {
+            $reques = curl_init();
+            curl_setopt ($reques, CURLOPT_HTTPHEADER, array('Authorization: Token token=381eb8b7d8eba4951c348d1e82838dd4')); // Access token for request.
+            curl_setopt ($reques, CURLOPT_URL, "https://www.cepaberto.com/api/v3/cep?cep=".$request['cep']); // Request URL.
+            curl_setopt ($reques, CURLOPT_RETURNTRANSFER, 1); 
+            curl_setopt ($reques, CURLOPT_CONNECTTIMEOUT, 5); // Connect time out.
+            curl_setopt ($reques, CURLOPT_CUSTOMREQUEST,"GET"); // HTPP Request Type.
+            $file_contents = curl_exec($reques);
+            curl_close($reques);
+    
+            return $file_contents;
 
+        } catch (Exception $e){
+            return $e->getMessage();
+        }
+
+    }
 }

@@ -166,10 +166,8 @@ return [
         Chumper\Zipper\ZipperServiceProvider::class,
         //DATATABLES
         Yajra\Datatables\DatatablesServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
 
-       
-        
-        
     ],
 
     /*
@@ -226,8 +224,6 @@ return [
         'Zipper' => Chumper\Zipper\Zipper::class,
         //DATATABLES
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
-        
-        
     ],
 
 ];

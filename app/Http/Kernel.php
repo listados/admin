@@ -29,6 +29,7 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             //\AdminEspindola\Http\Middleware\VerifyCsrfToken::class,
+            \AdminEspindola\Http\Middleware\Cors::class,
         ],
 
         'api' => [

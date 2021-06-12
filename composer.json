@@ -9,7 +9,6 @@
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "~5.0",
         "intervention/image": "^2.3",
-       
         "tymon/jwt-auth": "0.5.*",
         "fzaninotto/faker": "^1.6",
         "unisharp/laravel-ckeditor": "^4.5",
@@ -17,8 +16,9 @@
         "chumper/zipper": "0.6.x",
         "predis/predis": "^1.1",
         "yajra/laravel-datatables-oracle": "^6.0",
-        "barryvdh/laravel-dompdf": "^0.8.1"
-        
+        "barryvdh/laravel-dompdf": "^0.8.1",
+        "fruitcake/laravel-cors":"0.7.3",
+        "barryvdh/laravel-cors": "0.7.x"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",

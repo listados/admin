@@ -14,7 +14,7 @@ services:
         - MYSQL_ROOT_PASSWORD=livre
         - MYSQL_DATABASE=admin
         - MYSQL_USER=root
-        - MYSQL_PASSWORD=root
+        - MYSQL_PASSWORD=livre
       ports:
         - "7002:3306"
 

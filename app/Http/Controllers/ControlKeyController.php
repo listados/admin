@@ -135,7 +135,7 @@ class ControlKeyController extends Controller
             <a href="#" onclick="modal_update_key('."'".$keys->keys_id."'".', '."'".$keys->keys_cod_immobile."'".')" class="btn btn-xs btn-default"  title="Editar Código da chaves"><i class="fa fa-edit"></i></a>
             <a href="#" onclick="modal_delete_key(' . $keys->keys_id . ')" class="btn btn-xs btn-danger"  title="Excluir"><i class="fa fa-trash"></i></a>';
            }else{
-            return '<a href="#" onclick="modalReserveKey('."'".$keys->keys_cod_immobile."'".', '."'reserva'".')" class="btn btn-xs btn-default"  title="Nova Reservaddf"><i class="fa fa-plus"></i></a>
+            return '<a href="'.url('criar-reserva/'.$keys->keys_cod_immobile).'" class="btn btn-xs btn-default"  title="Nova Reserva"><i class="fa fa-plus"></i></a>
             <a href="#" onclick="modal_update_key('."'".$keys->keys_id."'".', '."'".$keys->keys_cod_immobile."'".')" class="btn btn-xs btn-default"  title="Editar Código da chaves"><i class="fa fa-edit"></i></a>
             <a href="#" onclick="modal_delete_key(' . $keys->keys_id . ')" class="btn btn-xs btn-danger"  title="Excluir"><i class="fa fa-trash"></i></a>';
            }

@@ -31,13 +31,14 @@
                         <div class="col-xs-6">
                             <small>Delivery</small>
                             {{ Form::select('reserves_id_delivery', $delivery , 7 , ['id' => 'value_delivery', 'class' => 'form-control' ]) }}
-                            
                         </div>
                         <div class="col-md-6" id="hide_value_delivery">
                             <small>Valor delivery*</small><small class="text-danger badge" data-toggle="tooltip" data-placement="top" title="Tooltip on left"><i class="fa fa-info"></i></small>            
                             <input type="text" name="value_delivery" id="delivery_value" class="form-control">           
                         </div>
-                        <div class="col-md-12"><samll>Data da entrega e da devolução das chaves</samll></div>
+                        <div class="col-md-12">
+                            <small>Data da entrega e da devolução das chaves</small>
+                        </div>
                         <div class="col-xs-6">
                             {{-- <input type="text" value="{{ $carbon->format("d/m/Y H:i") }}" class="form-control" disabled="true"> --}}
                             <input type="text"  name="reserves_date_exit" value="{{ $carbon->format("d/m/Y H:i") }}" class="form-control" id="control_keys_date_exit">
@@ -47,11 +48,11 @@
                             <small class="text-danger" id="erro_date_exit"></small>
                         </div>
                         <div class="col-xs-6">
-                            <samll>Valor do caução</samll>
+                            <small>Valor do caução</small>
                             <input type="text"  name="reserves_value_guarante" class="form-control" id="control_keys_value_guarantee" value="20,00">
                         </div>
                         <div class="col-xs-6">
-                            <samll>Código da Chave</samll>
+                            <small>Código da Chave</small>
                             <select class="form-control" name="selectCodeKey"  id="selectCodeKey">
                                 <option value="">--Selecione--</option>
                             </select>
@@ -59,85 +60,103 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-12">
                     <label>Dados do visitante</label>
                     <div class="alert alert-danger" id="erro_fields">
-                       <small>Campos Obrigatórios</small> <br>
-                       <small>Data de devolução , Código da chave, Nome do Visitante, Celular do Visitante e CPF do Visitante</small>
-                   </div>
-               </div>
-               <div class="box-body">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <samll for="">Celular</samll><small class="text-danger"> (cadastrar ou consultar)</small>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-mobile"></i>
-                                </div>
-                                <input type="text" class="form-control"  id="keys_visitor_phone_two" name="control_keys_visitor_phone_two" onkeyup="mascara( this, mtel );" maxlength="15" onblur="verifyclient();">
-                            </div>
-                              
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <samll for="">Fone Fixo</samll>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-phone"></i>
-                                </div>
-                                <input type="text" name="control_keys_visitor_phone_one" id="keys_visitor_phone_one" class="form-control" onkeyup="mascara( this, mtel );" maxlength="15" disabled="true">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12">
-                        <small class="text-primary" id="load_find_client"> <i class="fa fa-spinner fa-spin fa-2x"></i> <label id="info_load_find_client">Consultando...</label></small>  
-                    </div>
-
-                    <div class="col-xs-6 form-group">
-                        <input type="text" class="form-control"  id="control_keys_visitor_name" onblur="validFields('control_keys_visitor_name');" name="control_keys_visitor_name" placeholder="Nome e sobrenome" disabled="true">
-                        <small class="text-danger" id="erro_name_visitor"></small>
-                    </div>
-                    <div class="col-xs-6 form-group">
-                        <input type="text" class="form-control" name="control_keys_cpf" id="control_keys_cpf" placeholder="C.P.F" disabled="true">
-                    </div>
-                    <div class="col-xs-12 form-group">
-                        <input type="text" class="form-control" id="clients_email" name="control_keys_visitor_email" placeholder="E-mail" disabled="true">
-                    </div>
-
-
-                </div>
-
-
-                <div class="row"  id="type_manutencao">
-                    <div class="box box-success">
-                        <div class="col-md-12 col-xs-12">
-                            <label>Informações sobre a manutenção</label>
-                            <textarea class="form-control" name="reserve_ps"></textarea>
-
-                        </div>
+                        <small>Campos Obrigatórios</small> <br>
+                        <small>Data de devolução , Código da chave, Nome do Visitante, Celular do Visitante e CPF do Visitante</small>
                     </div>
                 </div>
-
-                {{ Form::hidden('reserves_ref_immobile' , '' , ['id' => 'control_keys_ref_immobile']) }}
-
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <small for="">Celular</small>
+                                <small class="text-danger"> (cadastrar ou consultar)</small>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-mobile"></i>
+                                    </div>
+                                    <input type="text" class="form-control"  id="keys_visitor_phone_two" name="control_keys_visitor_phone_two" onkeyup="mascara( this, mtel );" maxlength="15" onblur="verifyclient();">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <small for="">Fone Fixo</small>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <input type="text" name="control_keys_visitor_phone_one" id="keys_visitor_phone_one" class="form-control" onkeyup="mascara( this, mtel );" maxlength="15" disabled="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <small class="text-primary" id="load_find_client"> <i class="fa fa-spinner fa-spin fa-2x"></i> <label id="info_load_find_client">Consultando...</label></small>  
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input type="text" class="form-control"  id="control_keys_visitor_name" onblur="validFields('control_keys_visitor_name');" name="control_keys_visitor_name" placeholder="Nome e sobrenome" disabled="true">
+                            <small class="text-danger" id="erro_name_visitor"></small>
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input type="text" class="form-control" name="control_keys_cpf" id="control_keys_cpf" placeholder="C.P.F" disabled="true">
+                        </div>
+                        <div class="col-xs-12 form-group">
+                            <input type="text" class="form-control" id="clients_email" name="control_keys_visitor_email" placeholder="E-mail" disabled="true">
+                        </div>
+                        <div class="col-xs-3 form-group">
+                            <small for="">C.E.P</small> 
+                            <small class="text-danger"> (números)</small>
+                            <input type="text" class="form-control" id="clients_cep" name="control_keys_clients_cep" placeholder="CEP">
+                        </div>
+                        <div class="col-xs-9 form-group">
+                            <small for="">Logradouro</small>
+                            <input type="text" class="form-control" id="clients_address" name="control_keys_clients_address" placeholder="Logradouro">
+                        </div>
+                        <div class="col-xs-3 form-group">
+                            <small for="">Número</small>
+                            <input type="text" class="form-control" id="clients_address_number" name="control_keys_clients_address_number" placeholder="Nº">
+                        </div>
+                        <div class="col-xs-4 form-group">
+                            <small for="">Complemento</small>
+                            <input type="text" class="form-control" id="clients_address_complement" name="control_keys_clients_address_complement" placeholder="Ex: Ap. 100 BL A">
+                        </div>
+                        <div class="col-xs-5 form-group">
+                            <small for="">Bairro</small>
+                            <input type="text" class="form-control" id="clients_district" name="control_keys_clients_district" placeholder="Bairro">
+                        </div>
+                        <div class="col-xs-7 form-group">
+                            <small for="">Cidade</small>
+                            <input type="text" class="form-control" id="clients_city" name="control_keys_clients_city" placeholder="Cidade">
+                        </div>
+                        <div class="col-xs-5 form-group">
+                            <small for="">Estado</small>
+                            <input type="text" class="form-control" id="clients_state" name="control_keys_clients_state" placeholder="Estado">
+                        </div>
+                    </div>
+                    <div class="row"  id="type_manutencao">
+                        <div class="box box-success">
+                            <div class="col-md-12 col-xs-12">
+                                <label>Informações sobre a manutenção</label>
+                                <textarea class="form-control" name="reserve_ps"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    {{ Form::hidden('reserves_ref_immobile' , '' , ['id' => 'control_keys_ref_immobile']) }}
+                </div>
+                <!-- /.box-body -->
+                {{ Form::close() }}
             </div>
-            <!-- /.box-body -->
-            {{ Form::close() }}
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="closeModalReserve();">Sair</button>
-            <div id="confirmreserved">
-             <button type="button" class="btn btn-primary" id="reserveKeySave"><i class="fa fa-key"> </i> Reservar chaves</button> 
-         </div>                
-         <div id="confirmvisited">
-            <button type="button" class="btn btn-primary" onclick="saveReserve();" id="printreserveKeySave"><i class="fa fa-print"> </i> Imprimir Visita</button>
-
-
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="closeModalReserve();">Sair</button>
+                <div id="confirmreserved">
+                    <button type="button" class="btn btn-primary" id="reserveKeySave"><i class="fa fa-key"> </i> Reservar chaves</button> 
+                </div>
+                <div id="confirmvisited">
+                    <button type="button" class="btn btn-primary" onclick="saveReserve();" id="printreserveKeySave"><i class="fa fa-print"> </i> Imprimir Visita</button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
 </div>

@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use AdminEspindola\Http\Requests;
 use AdminEspindola\Http\Controllers\Controller;
 use AdminEspindola\Reserve;
+use AdminEspindola\Immobile;
+use AdminEspindola\Key;
 use Carbon\Carbon;
 use AdminEspindola\Delivery;
 use DB;
@@ -39,9 +41,14 @@ class ReserveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $immobile = Immobile::where('immobiles_code',$id)->get();
+        $delivery = Delivery::all()->pluck('deliveries_name','deliveries_id');
+        //$delivery = Delivery::all();
+        $carbon = Carbon::now();
+        $key = Key::where('keys_cod_immobile', $id)->get();
+        return view('key.edit', compact('key', 'delivery', 'carbon', 'immobile'));
     }
 
     /**

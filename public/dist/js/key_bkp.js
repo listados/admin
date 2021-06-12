@@ -29,7 +29,33 @@ $(function() {
         }else{
           $('#type_manutencao').hide();
         }
-      });
+  });
+
+  $("#clients_cep").change(function() {
+    var numberCep = $("#clients_cep").val();
+
+    var dataPost = {
+      cep: numberCep
+    };
+    $.ajax({
+      type: "POST",
+      url: domain_complet+'/cep',
+      data: dataPost,
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+        $("#clients_address").val(response.logradouro);
+        $("#clients_district").val(response.bairro);
+        $("#clients_city").val(response.cidade.nome);
+        $("#clients_state").val(response.estado.sigla);
+      }
+    });
+    // $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/",
+    //   function (data, textStatus, jqXHR) {
+    //     console.log(data);
+    //   }
+    // );
+  })
 });
 
 $(document).ready(function() {
@@ -56,9 +82,6 @@ $(document).ready(function() {
   $("#control_keys_cpf").inputmask("999.999.999-99"); 
   $("#control_keys_cpf").inputmask("999.999.999-99"); 
   //$("#reserve_keys_date_devolution").inputmask("99/99/9999 99:99"); 
-  var cod_immobiles = $("#code_immobiles_reserve").val();
-  console.log('code_immobile', cod_immobiles)
-  modalReserveKey(cod_immobiles , 'VISITA');
 
 });
 function dataFormatada(d) {
@@ -162,26 +185,26 @@ function reloadTable(name_table)
 
 function modalReserveKey(code_immobile , type)
 {
-  console.log({code_immobile})
+
   $("#reserveKey").modal('show');
   $("#keys_type").val(type);
   if(type ==  'manutencao')
   {
    $("#type_manutencao").show();
-  }
-  $.get(domain_complet + '/key/get/'+code_immobile, function(data) {
-    /*optional stuff to do after success */
-    $("#control_keys_ref_immobile").val(data[0].keys_cod_immobile);
-    $("#confirm_reserves_id").val(data[0].keys_cod_immobile);    
-    $.each(data, function(index, keys) {
-        console.log(keys.keys_code);
-      /* iterate through array or object */
-      if (keys.keys_status == "Disponível" || keys.keys_status == "Reservado") 
-      {
-        $("#selectCodeKey").append('<option  value="'+keys.keys_code+'">'+keys.keys_code+'</option>');
-      }
-    });
+ }
+ $.get(domain_complet + '/key/get/'+code_immobile, function(data) {
+  /*optional stuff to do after success */
+  $("#control_keys_ref_immobile").val(data[0].keys_cod_immobile);
+  $("#confirm_reserves_id").val(data[0].keys_cod_immobile);    
+  $.each(data, function(index, keys) {
+       console.log(keys.keys_code);
+     /* iterate through array or object */
+     if (keys.keys_status == "Disponível" || keys.keys_status == "Reservado") 
+     {
+      $("#selectCodeKey").append('<option  value="'+keys.keys_code+'">'+keys.keys_code+'</option>');
+    }
   });
+});
 }
 
 // $("#selectCodeKey").change(function(event) {
@@ -501,50 +524,50 @@ function validFields()
 
 //VERIFICA SE JA EXISTE UMA PESSOA COM ESSE FONE CADASTRADO
 function verifyclient(){
+
+
   if($("#keys_visitor_phone_two").val().length >= 14)
   {
   //LOAD NO MODAL DA RESERVA QUANDO PESQUISA O CLIENTE
   $("#load_find_client").show();
-  console.log(domain_complet+'/verify-phone-client');
-  console.log($("#keys_visitor_phone_two").val());
-    $.ajax({
-      url: domain_complet+'/verify-phone-client',
-      type: 'POST',
-      dataType: 'JSON',
-      data: {keys_visitor_phone_two: $("#keys_visitor_phone_two").val()},
-      success: function(data){
-      $("#load_find_client").hide();
-        //SE O OBJETO NÃO FOR VAZIO
-        if(jQuery.isEmptyObject(data) == false)
-        {
-          //LIBERANDO OS CAMPOS PARA EDIÇÃO SE PRECISAR
-          $("#control_keys_cpf").removeAttr( "disabled" );
-          $("#control_keys_visitor_name").removeAttr( "disabled" );
-          $("#clients_email").removeAttr( "disabled" );
-          $("#keys_visitor_phone_one").removeAttr( "disabled" );
-
-          $("#control_keys_cpf").val(data.client_cpf);
-          $("#control_keys_visitor_name").val(data.client_name);
-          $("#clients_email").val(data.client_email);
-          $("#keys_visitor_phone_one").val(data.phone_fixed);
-
-        }else{
+  $.ajax({
+    url: 'verify-phone-client',
+    type: 'POST',
+    dataType: 'JSON',
+    data: {keys_visitor_phone_two: $("#keys_visitor_phone_two").val()},
+    success: function(data){
+     $("#load_find_client").hide();
+      //SE O OBJETO NÃO FOR VAZIO
+      if(jQuery.isEmptyObject(data) == false)
+      {
+        //LIBERANDO OS CAMPOS PARA EDIÇÃO SE PRECISAR
         $("#control_keys_cpf").removeAttr( "disabled" );
         $("#control_keys_visitor_name").removeAttr( "disabled" );
         $("#clients_email").removeAttr( "disabled" );
         $("#keys_visitor_phone_one").removeAttr( "disabled" );
-        }
-      }
-    });
 
-  }else if($("#keys_visitor_phone_two").val().length < 14){
-    $("#load_find_client").removeClass('text-primary');
-    $("#load_find_client").addClass('text-danger');
-    $("#info_load_find_client").html('Número telefônico incompleto');
-    //$("#load_find_client").show();
-  }else{
-    $("#load_find_client").load();
-  }
+        $("#control_keys_cpf").val(data.client_cpf);
+        $("#control_keys_visitor_name").val(data.client_name);
+        $("#clients_email").val(data.client_email);
+        $("#keys_visitor_phone_one").val(data.phone_fixed);
+
+      }else{
+       $("#control_keys_cpf").removeAttr( "disabled" );
+       $("#control_keys_visitor_name").removeAttr( "disabled" );
+       $("#clients_email").removeAttr( "disabled" );
+       $("#keys_visitor_phone_one").removeAttr( "disabled" );
+     }
+   }
+ });
+
+}else if($("#keys_visitor_phone_two").val().length < 14){
+  $("#load_find_client").removeClass('text-primary');
+  $("#load_find_client").addClass('text-danger');
+  $("#info_load_find_client").html('Número telefônico incompleto');
+  //$("#load_find_client").show();
+}else{
+  $("#load_find_client").load();
+}
 
 }
 
@@ -561,8 +584,6 @@ function saveReserve()
 
  if(valida === true)
  {
-  var form = $('#formReserveKey').serializeJSON();
-  console.log(form);
   $.ajax({
     url: domain_complet + '/create-reserve',
     type: 'POST',
@@ -610,9 +631,9 @@ function saveReserve()
 
 window.onload = function(){
 
-  // id('keys_visitor_phone_two').onkeyup = function(){
-  //   mascara(this, mtel);
-  // };
+  id('keys_visitor_phone_two').onkeyup = function(){
+    mascara(this, mtel);
+  };
 }
 
 $("#save_receipt_key").click(function(){

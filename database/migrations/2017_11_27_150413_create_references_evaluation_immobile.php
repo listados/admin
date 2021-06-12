@@ -14,8 +14,8 @@ class CreateReferencesEvaluationImmobile extends Migration
     {
         Schema::create('references_evaluation_immobile', function (Blueprint $table) {
             $table->increments('references_evaluation_immobile_id');
-            $table->integer('id_clientes');
-            $table->integer('id_evaluations');
+            //$table->integer('id_clientes');
+            //$table->integer('id_evaluations');
             $table->timestamps();
         });
     }
