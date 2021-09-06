@@ -12,7 +12,7 @@
 		.td_space{
 			max-width: 1px;
 			margin-right: 3px;
-			padding: 3px;			
+			padding: 3px;
 			color: #fff;
 		}
 		.td_data{
@@ -32,17 +32,17 @@
 	</script>
 </head>
 <body>
-	
+
 	<table style="width: 1010px;">
 		<tr>
 			@include('key.report.col_one')
 
-		
+
 			@include('key.report.col_two')
-			
-			
+
+
 			@include('key.report.col_tree')
-			
+
 			<td class="td_space"> a</td>
 		</tr>
 

@@ -56,14 +56,14 @@
                                 {{ Form::select('reserves_id_delivery', $delivery , 7 , ['id' => 'value_delivery', 'class' => 'form-control' ]) }}
                             </div>
                             <div class="col-md-6" id="hide_value_delivery">
-                                <small>Valor delivery*</small><small class="text-danger badge" data-toggle="tooltip" data-placement="top" title="Tooltip on left"><i class="fa fa-info"></i></small>            
-                                <input type="text" name="value_delivery" id="delivery_value" class="form-control">           
+                                <small>Valor delivery*</small><small class="text-danger badge" data-toggle="tooltip" data-placement="top" title="Tooltip on left"><i class="fa fa-info"></i></small>
+                                <input type="text" name="value_delivery" id="delivery_value" class="form-control">
                             </div>
                             <div class="col-md-12">
                                 <small>Data da entrega e da devolução das chaves</small>
                             </div>
                             <div class="col-xs-6">
-                                
+
                                 <input type="text"  name="reserves_date_exit" value="{{ $carbon->format("d/m/Y H:i") }}" class="form-control" id="control_keys_date_exit">
                             </div>
                             <div class="col-xs-6">
@@ -116,7 +116,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-12">
-                                <small class="text-primary" id="load_find_client"> <i class="fa fa-spinner fa-spin fa-2x"></i> <label id="info_load_find_client">Consultando...</label></small>  
+                                <small class="text-primary" id="load_find_client"> <i class="fa fa-spinner fa-spin fa-2x"></i> <label id="info_load_find_client">Consultando...</label></small>
                             </div>
                             <div class="col-xs-6 form-group">
                                 <input type="text" class="form-control"  id="control_keys_visitor_name" onblur="validFields('control_keys_visitor_name');" name="control_keys_visitor_name" placeholder="Nome e sobrenome" disabled="true">
@@ -129,7 +129,7 @@
                                 <input type="text" class="form-control" id="clients_email" name="control_keys_visitor_email" placeholder="E-mail" disabled="true">
                             </div>
                             <div class="col-xs-3 form-group">
-                                <small for="">C.E.P</small> 
+                                <small for="">C.E.P</small>
                                 <small class="text-danger"> (números)</small>
                                 <input type="text" class="form-control" id="clients_cep" name="control_keys_clients_cep" placeholder="CEP" onblur="requestCEP($(this).attr('name'), ['immobiles_address' , 'immobiles_district' , 'immobiles_city' , 'immobiles_state'] )">
                             </div>
@@ -181,7 +181,7 @@
                     <!-- form start -->
                     <div class="box-body">
                         <p>
-                            <span><strong>Logradouro: </strong> {{$immobile[0]->immobiles_address}}, nº: 
+                            <span><strong>Logradouro: </strong> {{$immobile[0]->immobiles_address}}, nº:
                             {{$immobile[0]->immobiles_number}}, {{$immobile[0]->immobiles_complement}} </span> <br>
                             <span>
                                 <strong>Bairro: </strong> {{$immobile[0]->immobiles_district}}
@@ -192,7 +192,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="closeModalReserve();">Sair</button>
                             <div id="confirmreserved">
-                                <button type="button" class="btn btn-primary" id="reserveKeySave"><i class="fa fa-key"> </i> Reservar chaves</button> 
+                                <button type="button" class="btn btn-primary" id="reserveKeySave"><i class="fa fa-key"> </i> Reservar chaves</button>
                             </div>
                             <div id="confirmvisited">
                                 <button type="button" class="btn btn-primary" onclick="saveReserve();" id="printreserveKeySave"><i class="fa fa-print"> </i> Imprimir Visita</button>
@@ -204,7 +204,7 @@
             </div>
             <!--/.col (left) -->
             <!-- right column -->
-            
+
             <!--/.col (right) -->
         </div>
         <!-- /.row -->
@@ -270,33 +270,33 @@
                 "firstDay": 1
             },
     };
-    
+
     $("#keys_date_exit").daterangepicker({
           "timePicker": true,
           "timePicker24Hour": true,
-          "singleDatePicker": true,                   
+          "singleDatePicker": true,
           "showDropdowns": true,
           "locale": dateRangePickerSettings.locale ,
-          "autoApply": true          
+          "autoApply": true
         }, function(start, end) {
-          
+
           $('#keys_date_exit').val(start.format('DD/MM/YYYY H:mm') );
     });
-    
-    
+
+
     $("#keys_date_devolution").daterangepicker({
           "timePicker": true,
           "timePicker24Hour": true,
-          "singleDatePicker": true,                      
+          "singleDatePicker": true,
           "showDropdowns": true,
           "locale": dateRangePickerSettings.locale ,
-          "autoApply": true          
+          "autoApply": true
         }, function(start, end) {
           console.log("start: " + start + " end: "+end+" label: ");
           $('#keys_date_devolution').val(start.format('DD/MM/YYYY H:mm') );
          // $('#span_dev').html(start.format('DD/MM/YYYY H:mm'));
     });
-    
+
     /* CEP */
     function requestCEP(campo_cep , campos)
     {
@@ -320,7 +320,7 @@
             }
         });
     }
-    
+
     //Datemask dd/mm/yyyy
     $("#keys_cpf").inputmask("999.999.999-99", {});
     //$("#control_keys_visitor_state").inputmask("99.999-999",{"placeholder": "999.999.999-99"});

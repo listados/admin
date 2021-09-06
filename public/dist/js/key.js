@@ -57,7 +57,6 @@ $(document).ready(function() {
   $("#control_keys_cpf").inputmask("999.999.999-99"); 
   //$("#reserve_keys_date_devolution").inputmask("99/99/9999 99:99"); 
   var cod_immobiles = $("#code_immobiles_reserve").val();
-  console.log('code_immobile', cod_immobiles)
   modalReserveKey(cod_immobiles , 'VISITA');
 
 });
@@ -82,7 +81,7 @@ function modal_edit_key(id) {
     }else{
       $("#save_confirmed_key").show(); 
     }
-   console.log(data);
+
     //$("#result").html(data[0]['control_keys_type_immobile']);
     $("#title_devolution").html('Devolução de chaves para o imóvel ' + data[0]['reserves_ref_immobile'] + ' - COD. CHAVE: ' + data[0]['reserves_code_key']);
     $("#ref_imovel").html(data[0]['reserves_ref_immobile']);
@@ -94,8 +93,6 @@ function modal_edit_key(id) {
     $("#control_keys_id").val(data[0]['reserves_id_key']);
     $("#keys_type_info").html(data[0]['reserve_finality']);
     $("#id_key").val(data[0]['keys_id']);
-   
-    console.log(moment( data[0]['reserves_date_exit'] , "MM-DD-YYYY") );
   });
   $('#id_key').val(id);
   $('#modal_edit_key').modal('show');
@@ -162,8 +159,7 @@ function reloadTable(name_table)
 
 function modalReserveKey(code_immobile , type)
 {
-  console.log({code_immobile})
-  $("#reserveKey").modal('show');
+  //$("#reserveKey").modal('show');
   $("#keys_type").val(type);
   if(type ==  'manutencao')
   {
@@ -174,7 +170,6 @@ function modalReserveKey(code_immobile , type)
     $("#control_keys_ref_immobile").val(data[0].keys_cod_immobile);
     $("#confirm_reserves_id").val(data[0].keys_cod_immobile);    
     $.each(data, function(index, keys) {
-        console.log(keys.keys_code);
       /* iterate through array or object */
       if (keys.keys_status == "Disponível" || keys.keys_status == "Reservado") 
       {
@@ -215,7 +210,7 @@ $(document).ready(function() {
     PNotify.prototype.options.styling = "fontawesome";
     
 
-  });
+}); 
 
 $("#save_confirmed_key").click(function(event) {
   /* Act on the event */
@@ -323,7 +318,7 @@ $("#save_key").click(function(event) {
     }
   })
   .done(function() {
-    console.log("success");
+    //console.log("success");
   })
   .fail(function() {
     new PNotify({
@@ -338,7 +333,7 @@ $("#save_key").click(function(event) {
     });
   })
   .always(function() {
-    console.log("complete");
+    //console.log("complete");
   });
 
 });
@@ -435,15 +430,11 @@ var dateRangePickerSettings = {
 };
 
 $(function() {
-  console.log(dateRangePickerSettings.locale.format);
 
   $("#reserve_keys_date_devolution").datetimepicker({ 
     minDate: 0, 
     maxDate: "+1M +10D"
-    
-   });
-
-
+  });
 });
 
 function validFields()
@@ -495,6 +486,36 @@ function validFields()
    }
 
 
+   if($("#control_keys_visitor_name").val() === "")
+   {
+     new PNotify({
+      title: 'Ops! Ocorreu um erro',
+      text: 'Por favor, preencher o nome do cliente',
+      styling: 'bootstrap3',       
+      type: 'error',
+      icon: 'true',
+      animation: 'fade',
+      delay: 5000,
+      animate_speed: "slow"
+    });
+     return false;
+   }   
+
+   if($("#control_keys_clients_address").val() === "")
+   {
+     new PNotify({
+      title: 'Ops! Ocorreu um erro',
+      text: 'Por favor, preenchero o endereço do cliente',
+      styling: 'bootstrap3',       
+      type: 'error',
+      icon: 'true',
+      animation: 'fade',
+      delay: 5000,
+      animate_speed: "slow"
+    });
+     return false;
+   }
+
    return true;
 
  }
@@ -505,8 +526,8 @@ function verifyclient(){
   {
   //LOAD NO MODAL DA RESERVA QUANDO PESQUISA O CLIENTE
   $("#load_find_client").show();
-  console.log(domain_complet+'/verify-phone-client');
-  console.log($("#keys_visitor_phone_two").val());
+  // console.log(domain_complet+'/verify-phone-client');
+  // console.log($("#keys_visitor_phone_two").val());
     $.ajax({
       url: domain_complet+'/verify-phone-client',
       type: 'POST',
@@ -562,7 +583,7 @@ function saveReserve()
  if(valida === true)
  {
   var form = $('#formReserveKey').serializeJSON();
-  console.log(form);
+  //console.log(form);
   $.ajax({
     url: domain_complet + '/create-reserve',
     type: 'POST',
@@ -570,8 +591,8 @@ function saveReserve()
     data: $('#formReserveKey').serializeJSON(),
     success: function(data)
     {
-      console.log(data);
-      reloadTable('key_control');
+      //console.log(data);
+      //reloadTable('key_control');
 
       if (data.reserve_finality == 'reserva') {
         new PNotify({
@@ -584,7 +605,7 @@ function saveReserve()
           delay: 5000,
           animate_speed: "slow"
         });
-        $("#reserveKey").modal('hide');
+        window.open(domain_complet+'/chaves/receipt?reserves_id='+data.reserves_id+'&key=on&auto=on&delivery=on');
       }        
       
       if (data.reserve_finality == 'visita') {
@@ -696,7 +717,6 @@ function modal_confirm_reserve(id, code)
 }
 function modal_update_key(id, code_key)
 {
-  console.log(code_key);
   $("#info_update_code_key").html('Código atual é: <small class="label label-info">'+code_key+'</smal>');
   $("#update_keys_code").val(id);
   $("#update_code_key").modal('show');
