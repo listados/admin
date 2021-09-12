@@ -74,26 +74,26 @@ function dataFormatada(d) {
 //RECEBER AS CHAVES - DEVOLUÇÃO
 function modal_edit_key(id) {
 
-  $.get(domain_complet + '/reserva/' + id + '/show', function(data) {
+  // $.get(domain_complet + '/reserva/' + id + '/show', function(data) {
 
-    if(data == ""){
-      $("#save_confirmed_key").hide();
-    }else{
-      $("#save_confirmed_key").show(); 
-    }
+  //   if(data == ""){
+  //     $("#save_confirmed_key").hide();
+  //   }else{
+  //     $("#save_confirmed_key").show(); 
+  //   }
 
-    //$("#result").html(data[0]['control_keys_type_immobile']);
-    $("#title_devolution").html('Devolução de chaves para o imóvel ' + data[0]['reserves_ref_immobile'] + ' - COD. CHAVE: ' + data[0]['reserves_code_key']);
-    $("#ref_imovel").html(data[0]['reserves_ref_immobile']);
-    $("#cod_key").html(data[0]['reserves_code_key']);
-    $("#key_status").html(data[0]['keys_status']);
-    $("#retired_by").html(data[0]['nick']);
-    $("#date_retired").html(moment(data[0]['reserves_date_exit']).startOf('day').fromNow());
-    $("#date_devolution").html(moment(data[0]['reserves_date_devolution']).format('DD/MMM/YYYY h:mm:ss'));
-    $("#control_keys_id").val(data[0]['reserves_id_key']);
-    $("#keys_type_info").html(data[0]['reserve_finality']);
-    $("#id_key").val(data[0]['keys_id']);
-  });
+  //   //$("#result").html(data[0]['control_keys_type_immobile']);
+  //   $("#title_devolution").html('Devolução de chaves para o imóvel ' + data[0]['reserves_ref_immobile'] + ' - COD. CHAVE: ' + data[0]['reserves_code_key']);
+  //   $("#ref_imovel").html(data[0]['reserves_ref_immobile']);
+  //   $("#cod_key").html(data[0]['reserves_code_key']);
+  //   $("#key_status").html(data[0]['keys_status']);
+  //   $("#retired_by").html(data[0]['nick']);
+  //   $("#date_retired").html(moment(data[0]['reserves_date_exit']).startOf('day').fromNow());
+  //   $("#date_devolution").html(moment(data[0]['reserves_date_devolution']).format('DD/MMM/YYYY h:mm:ss'));
+  //   $("#control_keys_id").val(data[0]['reserves_id_key']);
+  //   $("#keys_type_info").html(data[0]['reserve_finality']);
+  //   $("#id_key").val(data[0]['keys_id']);
+  // });
   $('#id_key').val(id);
   $('#modal_edit_key').modal('show');
 }
@@ -536,6 +536,7 @@ function verifyclient(){
       success: function(data){
       $("#load_find_client").hide();
         //SE O OBJETO NÃO FOR VAZIO
+        console.log(data);
         if(jQuery.isEmptyObject(data) == false)
         {
           //LIBERANDO OS CAMPOS PARA EDIÇÃO SE PRECISAR
@@ -548,6 +549,13 @@ function verifyclient(){
           $("#control_keys_visitor_name").val(data.client_name);
           $("#clients_email").val(data.client_email);
           $("#keys_visitor_phone_one").val(data.phone_fixed);
+          $("#clients_cep").val(data.clients_cep);
+          $("#clients_address").val(data.clients_address);
+          $("#clients_address_number").val(data.clients_address_number);
+          $("#clients_address_complement").val(data.clients_address_complement);
+          $("#clients_district").val(data.clients_district);
+          $("#clients_city").val(data.clients_city);
+          $("#clients_state").val(data.clients_state);
 
         }else{
         $("#control_keys_cpf").removeAttr( "disabled" );

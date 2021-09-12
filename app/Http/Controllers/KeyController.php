@@ -356,6 +356,7 @@ class KeyController extends Controller {
 				->join('clients', 'phone.phone_id_client', '=', 'clients.clients_id')
 				->where('phone.phone_number', '=', $request['keys_visitor_phone_two'])
 				->get();
+
 			//SE EXISTIR O CADASTRO, REALIZA A ROTINA
 			if (count($phone_client) > 0) {
 				//CONSULTANDO TODOS DOS TELEFONES DE UM CLIENTE
@@ -366,6 +367,12 @@ class KeyController extends Controller {
 				$resul_client_phone['client_cpf'] = $phone_client[0]->clients_cpf;
 				$resul_client_phone['client_email'] = $phone_client[0]->clients_email;
 				$resul_client_phone['phone_fixed'] = $phone[0]->phone_number;
+				$resul_client_phone['clients_address'] = $phone_client[0]->clients_address;
+				$resul_client_phone['clients_address_number'] = $phone_client[0]->clients_address_number;
+				$resul_client_phone['clients_address_complement'] = $phone_client[0]->clients_address_complement;
+				$resul_client_phone['clients_district'] = $phone_client[0]->clients_district;
+				$resul_client_phone['clients_city'] = $phone_client[0]->clients_city;
+				$resul_client_phone['clients_state'] = $phone_client[0]->clients_state;
 				return response()->json($resul_client_phone); //ENVIANDO,
 
 			} else {

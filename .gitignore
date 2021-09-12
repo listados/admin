@@ -5,3 +5,7 @@ Homestead.yaml
 Homestead.json
 .env
 /public/dist/img/upload/vistoria
+.phpintel
+/dadosMysql
+/public/plugins/
+/resources/assets/js/plugins

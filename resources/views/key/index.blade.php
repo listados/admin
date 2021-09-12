@@ -58,7 +58,7 @@
                                                         </tr>
                                                     </thead>
                                                 </table>
-                                               
+
                                                 @include('modal.modal_create_key')
                                                 @include('modal.modal_create_immobile')
                                                 @include('modal.modal_delete_key')
@@ -95,7 +95,7 @@
                                                     </tr>
                                                 </thead>
                                             </table>
-                                             @include('modal.modal_edit_key')
+
                                         </div>
                                     </div>
                                         </div>
@@ -107,6 +107,7 @@
                 </div>
             </div>
         </div>
+        @include('modal.modal_edit_key')
         @include('modal.modal_evaluation')
         @include('modal.modal_reserve_key')
         @include('modal.modal_confirm_print')
@@ -130,7 +131,7 @@
 {{ Html::script('dist/js/mascaraFone.js') }}
 {{ Html::script('dist/js/key.js') }}
 <script type="text/javascript">
-    
+
 $(document).ready(function() {
     loadTableKey();
 
@@ -142,14 +143,14 @@ $(function () {
         $('#search').addClass('open');
         $('#search > form > input[type="search"]').focus();
     });
-    
+
     $('#search, #search button.close').on('click keyup', function(event) {
         if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
             $(this).removeClass('open');
         }
     });
-    
-    
+
+
     //Evita que o formulário seja enviado.
     // $('form').submit(function(event) {
     //     event.preventDefault();
