@@ -158,7 +158,7 @@
                                       <td> {{$proposta->legal_location_email}}</td>
                                       <td> <a href="{{$dominio_pdf_externo}}/?action=view-legal&id={{base64_encode($proposta->legal_id)}}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                       <a href="{{$dominio_pdf_externo}}/view/report/proposal_pj_adm.php?id={{base64_encode($proposta->legal_id)}}" class="btn" target="_blank" data-toggle="tooltip" title="Análise de Proposta"><i class="fa fa-pie-chart" aria-hidden="true"></i></a>
-                                      <a href="{{url('download-arquivo/'.$proposta->legal_id.'/proposta-pj')}}" class="btn" target="_blank" data-toggle="tooltip" title="Arquivos Enviados"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                      <a href="{{url('download-arquivo/'.$proposta->legal_id.'/inquilino')}}" class="btn" target="_blank" data-toggle="tooltip" title="Arquivos Enviados"><i class="fa fa-download" aria-hidden="true"></i></a>
                                       <a href="{{ '#'.$modal_id_delete }}" data-toggle="modal">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                       </a>
