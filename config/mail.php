@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => 'mx1.weblink.com.br',
+    'host' => 'smtp.gmail.com',
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => 587,
+    'port' => 465,
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'no-reply@espindolaimobiliaria.com.br', 'name' => 'Equipe AdminEspíndola'],
+    'from' => ['address' => 'naoresponda@espindolaimobiliaria.com.br', 'name' => 'Equipe AdminEspíndola'],
 
     /*
     |--------------------------------------------------------------------------
@@ -68,7 +68,7 @@ return [
     |
     */
 
-    'encryption' => 'tls',
+    'encryption' => 'ssl',
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
     |
     */
 
-    'username' => 'no-reply@espindolaimobiliaria.com.br',
+    'username' => 'naoresponda@espindolaimobiliaria.com.br',
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ return [
     |
     */
 
-    'password' => 'weblink2018',
+    'password' => 'Espindola1212!',
 
     /*
     |--------------------------------------------------------------------------

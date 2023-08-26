@@ -21,7 +21,7 @@ p{
 		
 		
 		<tr style="text-align: center;">
-			<td><p>Olá, <strong> {{$user->name}}</strong> !</p>
+			<td><p>Olá, <strong> {{$user_last->name}}</strong> !</p>
 				<p>Você foi convidado(a) a acessar o <b>Admin Espíndola imobiliária</b>.</p>
 			</td>			
 		</tr>
@@ -33,7 +33,7 @@ p{
 		</tr>
 
 		<tr style="text-align: center;">
-			<td><a href="{{url('/alterar-senha/'.$user->id)}}" style="width: 170px;min-height: 50px; background: #5cb85c;color: white;
+			<td><a href="{{url('/alterar-senha/'.$user_last->id)}}" style="width: 170px;min-height: 50px; background: #5cb85c;color: white;
     font-weight: none;  font-size: 18px;padding: 10px; border-radius: 5px; text-decoration: none;">Confirmar</a></p></td>
 		</tr>
 		<tr style="text-align: center;">
