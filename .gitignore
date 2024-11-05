@@ -8,4 +8,6 @@ Homestead.json
 .phpintel
 /dadosMysql
 /public/plugins/
+/public/dist/img/upload
 /resources/assets/js/plugins
+.idea
