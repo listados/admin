@@ -41,7 +41,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <small>Imóvel</small>
-                                <input type="text" value="{{ $immobile[0]->immobiles_code }}" class="form-control" disabled="true" id="code_immobiles_reserve">
+                                <input type="text" value="{{ $immobile->immobiles_code }}" class="form-control" disabled="true" id="code_immobiles_reserve">
                             </div>
                             <div class="col-xs-6">
                                 <small>Finalidade</small>
@@ -181,12 +181,12 @@
                     <!-- form start -->
                     <div class="box-body">
                         <p>
-                            <span><strong>Logradouro: </strong> {{$immobile[0]->immobiles_address}}, nº:
-                            {{$immobile[0]->immobiles_number}}, {{$immobile[0]->immobiles_complement}} </span> <br>
+                            <span><strong>Logradouro: </strong> {{$immobile->immobiles_address}}, nº:
+                            {{$immobile->immobiles_number}}, {{$immobile->immobiles_complement}} </span> <br>
                             <span>
-                                <strong>Bairro: </strong> {{$immobile[0]->immobiles_district}}
-                                <strong>Cidade: </strong> {{$immobile[0]->immobiles_city}}
-                                <strong>Estado: </strong> {{$immobile[0]->immobiles_state}}
+                                <strong>Bairro: </strong> {{$immobile->immobiles_district}}
+                                <strong>Cidade: </strong> {{$immobile->immobiles_city}}
+                                <strong>Estado: </strong> {{$immobile->immobiles_state}}
                             </span>
                         </p>
                         <div class="modal-footer">
