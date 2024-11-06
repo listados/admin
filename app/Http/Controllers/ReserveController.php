@@ -37,12 +37,13 @@ class ReserveController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create($id) {
+		
 		$immobile = Immobile::where('immobiles_code', $id)->get();
 		$delivery = Delivery::all()->pluck('deliveries_name', 'deliveries_id');
 		//$delivery = Delivery::all();
 		$carbon = Carbon::now();
 		$key = Key::where('keys_cod_immobile', $id)->get();
-		//dd($immobile);
+
 		return view('key.edit', compact('key', 'delivery', 'carbon', 'immobile'));
 	}
 

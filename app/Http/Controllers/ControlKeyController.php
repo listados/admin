@@ -107,6 +107,7 @@ class ControlKeyController extends Controller {
 		//          ->select(['keys_id', 'keys_code', 'keys_cod_immobile', 'keys_status']);
 		//$keys= Key::where('keys_status','Reservado')->orWhere('keys_status' , 'Disponível');
 		$keys = Key::all();
+		
 		return Datatables::of($keys)->setRowClass(function ($key) {
 			if ($key->keys_status == 'Atrasado') {
 

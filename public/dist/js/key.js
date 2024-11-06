@@ -764,4 +764,5 @@ $("#save_update_code_key").click(function(data){
   
 });
 
-
+// Chamando a função para renderizar os dados na tabela.
+loadTableKey();
