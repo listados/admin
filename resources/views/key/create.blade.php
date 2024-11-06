@@ -21,6 +21,15 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
+            @if (count($errors) > 0)
+                <div class="alert alert-info">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <!-- left column -->
             <div class="col-md-6">
                 <!-- general form elements -->

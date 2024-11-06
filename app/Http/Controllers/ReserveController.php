@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Datatables;
 use DB;
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 
 class ReserveController extends Controller {
 
@@ -37,10 +38,21 @@ class ReserveController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create($id) {
+		$client = new Client([
+			// Base URI is used with relative requests
+			'base_uri' => 'https://espindolaimobiliaria.com.br/api/',
+			// You can set any number of default request options.
+			'timeout'  => 2.0,
+		]);
+		$response = $client->request('GET', 'v1/immobile-id/' . $id);
+		$dataRequest = json_decode($response->getBody());
+		$immobile =  $dataRequest;
 		
-		$immobile = Immobile::where('immobiles_code', $id)->get();
+		if(count((array)$immobile) == 0)
+		{
+			return redirect('chaves')->withErrors(['errors' => 'O Código do imóvel está desatualizado']);
+		}
 		$delivery = Delivery::all()->pluck('deliveries_name', 'deliveries_id');
-		//$delivery = Delivery::all();
 		$carbon = Carbon::now();
 		$key = Key::where('keys_cod_immobile', $id)->get();
 

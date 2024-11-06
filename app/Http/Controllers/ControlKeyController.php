@@ -41,7 +41,6 @@ class ControlKeyController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create(Request $request) {
-		//dd($request->all());
 		$carbon = Carbon::now();
 		//$delivery = Delivery::all()->toArray();
 		$delivery = Delivery::select('deliveries_id', 'deliveries_name')->get();
@@ -157,8 +156,6 @@ class ControlKeyController extends Controller {
 
 		if (empty($request['control_keys_date_devolution'])) {
 			$dt_dev = Reserve::where('reserves_id', $id)->get();
-			dd($request->all());
-
 			$request['control_keys_date_devolution'] = $dt_dev[0]->control_keys_date_devolution;
 
 		} else {
