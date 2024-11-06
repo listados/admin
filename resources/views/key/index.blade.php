@@ -25,6 +25,15 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
+                @if (count($errors) > 0)
+                <div class="alert alert-info">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Reserva</h3>
@@ -131,10 +140,6 @@
 {{ Html::script('dist/js/mascaraFone.js') }}
 {{ Html::script('dist/js/key.js') }}
 <script type="text/javascript">
-
-$(document).ready(function() {
-    
-});
 
 $(function () {
     $('a[href="#search"]').on('click', function(event) {

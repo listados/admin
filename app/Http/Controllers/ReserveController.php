@@ -44,12 +44,15 @@ class ReserveController extends Controller {
 			// You can set any number of default request options.
 			'timeout'  => 2.0,
 		]);
-		$response = $client->request('GET', 'v1/immobile-id/AP0393');
+		$response = $client->request('GET', 'v1/immobile-id/' . $id);
 		$dataRequest = json_decode($response->getBody());
 		$immobile =  $dataRequest;
-	
+		
+		if(count((array)$immobile) == 0)
+		{
+			return redirect('chaves')->withErrors(['errors' => 'O Código do imóvel está desatualizado']);
+		}
 		$delivery = Delivery::all()->pluck('deliveries_name', 'deliveries_id');
-		//$delivery = Delivery::all();
 		$carbon = Carbon::now();
 		$key = Key::where('keys_cod_immobile', $id)->get();
 
