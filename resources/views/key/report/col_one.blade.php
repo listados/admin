@@ -13,13 +13,23 @@
     </p>
     <hr>
     <p style="font-size: 10px; text-align: left;">
-        <strong>Imóvel: {{$key[0]->keys_cod_immobile .' - '.$immobile[0]->immobiles_type_immobiles}} – {{$immobile[0]->immobiles_address.','}} {{(!empty($immobile[0]->immobiles_number) ? $immobile[0]->immobiles_number.',' : null)}} {{(!empty($immobile[0]->immobiles_complement) ? $immobile[0]->immobiles_complement.',' : '' )}} {{(!empty($immobile[0]->immobiles_district) ? $immobile[0]->immobiles_district.',' : null )}} {{(!empty($immobile[0]->immobiles_city) ? $immobile[0]->immobiles_city.',' : null )}} ({{$immobile[0]->immobiles_state}})
-        CEP: {{$immobile[0]->immobiles_cep}}</strong><br>
+        <strong>
+            Imóvel: {{$key[0]->keys_cod_immobile .' - '.
+            $immobile['immobiles_type_immobiles']}} –
+            {{$immobile['immobiles_address'].','}}
+            {{(!empty($immobile['immobiles_number']) ? $immobile['immobiles_number'].',' : null)}}
+            {{(!empty($immobile['immobiles_complement']) ? $immobile['immobiles_complement'].',' : '' )}}
+            {{(!empty($immobile['immobiles_district']) ? $immobile['immobiles_district'].',' : null )}}
+            {{(!empty($immobile['immobiles_city']) ? $immobile['immobiles_city'].',' : null )}}
+            ({{$immobile['immobiles_state']}})
+        CEP: {{$immobile['immobiles_cep']}}</strong><br>
         Caução: {{number_format($reserve[0]->reserves_value_guarante, '2' , ',' , '.')}}<br>
         <strong>Previsão para devolução: {{date('d/m/Y H:i' , strtotime($reserve[0]->reserves_date_devolution) )}}</strong>
     </p>
     <p style="font-size: 11px;">
-        Recebi da ESPÍNDOLA IMOBILIÁRIA as chaves do imóvel especificado acima, para visitação do mesmo, comprometendo-me a devolvê-las no prazo acima previsto. Caso ocorra atraso na devolução, perdas ou danos causados na mesma, a caução paga neste ato não será devolvida e ainda terei que indenizar o proprietário por eventual prejuízo causado a este.
+        Recebi da ESPÍNDOLA IMOBILIÁRIA as chaves do imóvel especificado acima, para visitação do mesmo,
+        comprometendo-me a devolvê-las no prazo acima previsto. Caso ocorra atraso na devolução, perdas ou danos
+        causados na mesma, a caução paga neste ato não será devolvida e ainda terei que indenizar o proprietário por eventual prejuízo causado a este.
     </p>
     <p style="text-align: center; ">
         __________________________________

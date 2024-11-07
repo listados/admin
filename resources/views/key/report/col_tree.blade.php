@@ -21,8 +21,15 @@ $class_td = 'td_data_false';
   --------------------------------------------
 </p>
 <p style="font-size: 11px; text-align: left;">
- <strong>Imóvel: {{$key[0]->keys_cod_immobile .' - '.$immobile[0]->immobiles_type_immobiles}} – {{$immobile[0]->immobiles_address.','}} {{(!empty($immobile[0]->immobiles_number) ? $immobile[0]->immobiles_number.',' : null)}} {{(!empty($immobile[0]->immobiles_complement) ? $immobile[0]->immobiles_complement.',' : '' )}} {{(!empty($immobile[0]->immobiles_district) ? $immobile[0]->immobiles_district.',' : null )}} {{(!empty($immobile[0]->immobiles_city) ? $immobile[0]->immobiles_city.',' : null )}} ({{$immobile[0]->immobiles_state}})
-    CEP: {{$immobile[0]->immobiles_cep}}</strong><br>
+    Imóvel: {{$key[0]->keys_cod_immobile .' - '.
+            $immobile['immobiles_type_immobiles']}} –
+    {{$immobile['immobiles_address'].','}}
+    {{(!empty($immobile['immobiles_number']) ? $immobile['immobiles_number'].',' : null)}}
+    {{(!empty($immobile['immobiles_complement']) ? $immobile['immobiles_complement'].',' : '' )}}
+    {{(!empty($immobile['immobiles_district']) ? $immobile['immobiles_district'].',' : null )}}
+    {{(!empty($immobile['immobiles_city']) ? $immobile['immobiles_city'].',' : null )}}
+    ({{$immobile['immobiles_state']}})
+    CEP: {{$immobile['immobiles_cep']}}</strong><br>
     {{-- DADOS DO VISITANTE --}}
     @include('key.report.visitor')
     {{-- DADOS DO VISITANTE --}}
@@ -53,8 +60,15 @@ $class_td = 'td_data_false';
     <strong >DADOS DA VISTORIA</strong>
 </p>
 <p style="font-size: 10px;text-align: left; ">
-    <strong>Imóvel: {{$key[0]->keys_cod_immobile .' - '.$immobile[0]->immobiles_type_immobiles}} – {{$immobile[0]->immobiles_address.','}} {{(!empty($immobile[0]->immobiles_number) ? $immobile[0]->immobiles_number.',' : null)}} {{(!empty($immobile[0]->immobiles_complement) ? $immobile[0]->immobiles_complement.',' : '' )}} {{(!empty($immobile[0]->immobiles_district) ? $immobile[0]->immobiles_district.',' : null )}} {{(!empty($immobile[0]->immobiles_city) ? $immobile[0]->immobiles_city.',' : null )}} ({{$immobile[0]->immobiles_state}})
-        CEP: {{$immobile[0]->immobiles_cep}}</strong><br>
+    Imóvel: {{$key[0]->keys_cod_immobile .' - '.
+            $immobile['immobiles_type_immobiles']}} –
+    {{$immobile['immobiles_address'].','}}
+    {{(!empty($immobile['immobiles_number']) ? $immobile['immobiles_number'].',' : null)}}
+    {{(!empty($immobile['immobiles_complement']) ? $immobile['immobiles_complement'].',' : '' )}}
+    {{(!empty($immobile['immobiles_district']) ? $immobile['immobiles_district'].',' : null )}}
+    {{(!empty($immobile['immobiles_city']) ? $immobile['immobiles_city'].',' : null )}}
+    ({{$immobile['immobiles_state']}})
+    CEP: {{$immobile['immobiles_cep']}}</strong><br>
     </p>
     <P style="font-size: 10px;text-align: left; "">
     Hora Visita:  {{date('d/m/Y H:i' , strtotime($reserve[0]->reserves_date_exit) )}}<br>

@@ -440,20 +440,20 @@ $(function() {
 function validFields()
 {
     //VERIFICAÇÃO PARA OS CAMPOS DO MODAL DE RESERVA DE CHAVES
-    if($("#selectCodeKey").val() === "")
-    {
-      new PNotify({
-        title: 'Ops! Ocorreu um erro',
-        text: 'Por favor, preencher o código da Chave',
-        styling: 'bootstrap3',       
-        type: 'error',
-        icon: 'true',
-        animation: 'fade',
-        delay: 5000,
-        animate_speed: "slow"
-      });
-      return false;
-    }
+    // if($("#selectCodeKey").val() === "")
+    // {
+    //   new PNotify({
+    //     title: 'Ops! Ocorreu um erro',
+    //     text: 'Por favor, preencher o código da Chave',
+    //     styling: 'bootstrap3',
+    //     type: 'error',
+    //     icon: 'true',
+    //     animation: 'fade',
+    //     delay: 5000,
+    //     animate_speed: "slow"
+    //   });
+    //   return false;
+    // }
 
     if($("#keys_visitor_phone_two").val() === "")
     {

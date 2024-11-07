@@ -221,10 +221,24 @@ class KeyController extends Controller {
 		ini_set('memory_limit', '128M');
 		ob_start();
 		$reserve = Reserve::where('reserves_id', $request->reserves_id)->get();
-		$immobile = Immobile::where('immobiles_code', $reserve[0]->reserves_ref_immobile)->get();
+		$immobiles = Immobile::where('immobiles_code', $reserve[0]->reserves_ref_immobile)->get();
 		$key = Key::where('keys_id', $reserve[0]->reserves_id_key)->get();
 		$client = Client::where('clients_id', $reserve[0]->reserves_id_client)->get();
 		$phone = DB::table('phone')->where('phone_id_client', $client[0]->clients_id)->get();
+        if(count($immobiles) == 0) {
+            $immobile = [
+                'immobiles_address' => null,
+                'immobiles_type_immobiles' => null,
+                'immobiles_number' => null,
+                'immobiles_district' => null,
+                'immobiles_complement' => null,
+                'immobiles_city' => null,
+                'immobiles_state' => null,
+                'immobiles_cep' => null
+            ];
+        }else{
+            $immobile = $immobiles;
+        }
 		$pdf = PDF::loadView('key.report.receipt', compact('key', 'immobile', 'reserve', 'client', 'phone'));
 		$pdf->setPaper('A4', 'landscape');
 		$pdf->output();

@@ -17,6 +17,7 @@ use Datatables;
 use DB;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use function json_decode;
 
 class ReserveController extends Controller {
 
@@ -44,19 +45,20 @@ class ReserveController extends Controller {
 			// You can set any number of default request options.
 			'timeout'  => 2.0,
 		]);
-		$response = $client->request('GET', 'v1/immobile-id/' . $id);
-		$dataRequest = json_decode($response->getBody());
-		$immobile =  $dataRequest;
-		
-		if(count((array)$immobile) == 0)
-		{
-			return redirect('chaves')->withErrors(['errors' => 'O Código do imóvel está desatualizado']);
-		}
+        try {
+            $response = $client->request('GET', 'v1/immobile-id/' . $id);
+            $dataRequest = json_decode($response->getBody());
+            $immobile =  $dataRequest;
+        }catch (\Exception $e){
+            $immobile = new Immobile();
+        }
+
+
 		$delivery = Delivery::all()->pluck('deliveries_name', 'deliveries_id');
 		$carbon = Carbon::now();
 		$key = Key::where('keys_cod_immobile', $id)->get();
 
-		return view('key.edit', compact('key', 'delivery', 'carbon', 'immobile'));
+		return view('key.edit', compact('key', 'delivery', 'carbon', 'immobile', 'id'));
 	}
 
 	/**

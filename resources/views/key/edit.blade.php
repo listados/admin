@@ -23,7 +23,11 @@
         <div class="row">
             <!-- left column -->
             <div class="col-md-12">
-                <!-- general form elements -->
+                @if( !isset($immobile->immobiles_code) )
+                    <div class="alert alert-info">
+                        <p>O Código desse imóvel pode está desatualizado, por isso não encontramos o endereço do imóvel.</p>
+                    </div>
+                @endif
                 <!-- Input addon -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
@@ -41,7 +45,8 @@
                             </div>
                             <div class="col-xs-6">
                                 <small>Imóvel</small>
-                                <input type="text" value="{{ $immobile->immobiles_code }}" class="form-control" disabled="true" id="code_immobiles_reserve">
+                                <input type="text" value="{{ isset($immobile->immobiles_code) ? $immobile->immobiles_code : $id }}"
+                                       class="form-control" disabled="true" id="code_immobiles_reserve">
                             </div>
                             <div class="col-xs-6">
                                 <small>Finalidade</small>
@@ -180,6 +185,7 @@
                     <!-- /.box-header -->
                     <!-- form start -->
                     <div class="box-body">
+                        @if(isset($immobile->immobiles_code))
                         <p>
                             <span><strong>Logradouro: </strong> {{$immobile->immobiles_address}}, nº:
                             {{$immobile->immobiles_number}}, {{$immobile->immobiles_complement}} </span> <br>
@@ -189,6 +195,7 @@
                                 <strong>Estado: </strong> {{$immobile->immobiles_state}}
                             </span>
                         </p>
+                        @endif
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="closeModalReserve();">Sair</button>
                             <div id="confirmreserved">
